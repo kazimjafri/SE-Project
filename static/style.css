@@ -1,0 +1,476 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0f1117;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(49, 130, 206, 0.08) 0%, transparent 70%),
+    radial-gradient(rgba(49, 130, 206, 0.07) 1px, transparent 1px);
+  background-size: 100% 100%, 24px 24px;
+  background-attachment: fixed;
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+
+/* ── Navbar ── */
+.navbar {
+  background: #1a1d2e;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  border-bottom: 1px solid #2d3748;
+}
+.navbar .brand {
+  font-size: 18px;
+  font-weight: 700;
+  color: #63b3ed;
+  text-decoration: none;
+}
+.navbar a {
+  color: #a0aec0;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+.navbar a:hover,
+.navbar a.active {
+  color: #63b3ed;
+}
+
+/* ── Page wrapper ── */
+.page {
+  padding: 28px 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+h1 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.subtitle {
+  color: #718096;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+/* ── Metric cards ── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.card {
+  background: #1a1d2e;
+  border: 1px solid #2d3748;
+  border-radius: 12px;
+  padding: 20px;
+}
+.card .label {
+  font-size: 12px;
+  color: #718096;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.card .value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+.card .value.warn {
+  color: #f6ad55;
+}
+.card .value.danger {
+  color: #fc8181;
+}
+.card .value.ok {
+  color: #68d391;
+}
+
+/* ── Status badge ── */
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #68d391;
+}
+.dot.fault {
+  background: #fc8181;
+  animation: blink 0.8s infinite;
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+.badge {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+.badge.online {
+  background: #1c3a2a;
+  color: #68d391;
+}
+.badge.fault {
+  background: #3a1c1c;
+  color: #fc8181;
+}
+
+/* ── Panels (logs + alerts) ── */
+.panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.panel {
+  background: #1a1d2e;
+  border: 1px solid #2d3748;
+  border-radius: 12px;
+  padding: 16px;
+}
+.panel-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #718096;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.log-feed {
+  height: 180px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.log-entry {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.log-INFO {
+  background: #1a2a3a;
+  color: #63b3ed;
+}
+.log-WARNING {
+  background: #2a2010;
+  color: #f6ad55;
+}
+.log-ERROR {
+  background: #2a1010;
+  color: #fc8181;
+}
+
+/* ── Alert items ── */
+.alert-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #2d3748;
+  margin-bottom: 8px;
+  background: #12151f;
+}
+.alert-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+.alert-text {
+  font-size: 13px;
+  color: #e2e8f0;
+  flex: 1;
+}
+.alert-time {
+  font-size: 11px;
+  color: #4a5568;
+}
+
+/* ── Buttons ── */
+.btn-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s;
+}
+.btn:hover {
+  opacity: 0.85;
+}
+.btn-danger {
+  background: #e53e3e;
+  color: white;
+}
+.btn-default {
+  background: #2d3748;
+  color: #e2e8f0;
+}
+.btn-success {
+  background: #276749;
+  color: white;
+}
+
+/* ── Chart bar ── */
+.chart-bars {
+  display: flex;
+  align-items: flex-end;
+  height: 80px;
+  gap: 5px;
+  margin-top: 8px;
+}
+.bar {
+  flex: 1;
+  border-radius: 4px 4px 0 0;
+  transition:
+    height 0.3s,
+    background 0.3s;
+  min-height: 4px;
+}
+
+/* ── Info box ── */
+.info-box {
+  background: #1a1d2e;
+  border: 1px solid #2d3748;
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: 13px;
+  color: #a0aec0;
+  margin-bottom: 20px;
+}
+.info-box strong {
+  color: #e2e8f0;
+}
+
+/* ── Timeline ── */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tl-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.tl-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+.tl-label {
+  font-size: 14px;
+  color: #e2e8f0;
+}
+.tl-sub {
+  font-size: 12px;
+  color: #718096;
+}
+
+/* ── About page ── */
+.about-card {
+  background: #1a1d2e;
+  border: 1px solid #2d3748;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.about-card h2 {
+  font-size: 17px;
+  margin-bottom: 12px;
+  color: #63b3ed;
+}
+.about-card p {
+  font-size: 14px;
+  color: #a0aec0;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 16px;
+}
+.concept-card {
+  background: #12151f;
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid #2d3748;
+}
+.concept-card .icon {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+.concept-card h3 {
+  font-size: 14px;
+  color: #e2e8f0;
+  margin-bottom: 6px;
+}
+.concept-card p {
+  font-size: 12px;
+  color: #718096;
+  line-height: 1.6;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1d2e;
+}
+::-webkit-scrollbar-thumb {
+  background: #4a5568;
+  border-radius: 4px;
+}
+
+/* ── Fault History Table ── */
+.fault-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.fault-table th {
+  text-align: left;
+  padding: 10px 12px;
+  color: #718096;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #2d3748;
+}
+.fault-table td {
+  padding: 12px;
+  border-bottom: 1px solid #1a2332;
+  color: #e2e8f0;
+}
+.fault-table tr:hover td {
+  background: #1a2332;
+}
+
+/* login page css*/
+
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0f1117;
+  background-image:
+    radial-gradient(
+      ellipse 80% 60% at 50% 50%,
+      rgba(49, 130, 206, 0.12) 0%,
+      transparent 70%
+    ),
+    radial-gradient(rgba(49, 130, 206, 0.15) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    24px 24px;
+}
+.login-box {
+  background: rgba(26, 29, 46, 0.85);
+  border: 1px solid rgba(49, 130, 206, 0.3);
+  border-radius: 20px;
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 400px;
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 0 40px rgba(49, 130, 206, 0.08),
+    0 20px 60px rgba(0, 0, 0, 0.4);
+}
+.login-logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #63b3ed;
+  margin-bottom: 6px;
+}
+.login-sub {
+  font-size: 13px;
+  color: #718096;
+  margin-bottom: 32px;
+}
+.form-group {
+  margin-bottom: 18px;
+}
+.form-group label {
+  display: block;
+  font-size: 12px;
+  color: #a0aec0;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.form-group input {
+  width: 100%;
+  background: #12151f;
+  border: 1px solid #2d3748;
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 14px;
+  color: #e2e8f0;
+  outline: none;
+  transition: border 0.2s;
+}
+.form-group input:focus {
+  border-color: #63b3ed;
+}
+.btn-login {
+  width: 100%;
+  background: #3182ce;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+.btn-login:hover {
+  background: #2b6cb0;
+}
+.error-msg {
+  background: #2a1010;
+  border: 1px solid #fc8181;
+  color: #fc8181;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  margin-bottom: 18px;
+}

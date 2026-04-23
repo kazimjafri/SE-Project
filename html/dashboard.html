@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Monitoring Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="/" class="brand">MonitorPro</a>
+      <a href="/" class="active">Dashboard</a>
+      <a href="/alerts">Alerts</a>
+      <a href="/history">Fault History</a>
+      <a href="/about">About</a>
+      <a href="/logout" style="margin-left: auto; color: #fc8181">Logout</a>
+    </nav>
+
+    <div class="page">
+      <h1>System Monitoring Dashboard</h1>
+      <p class="subtitle">Real-time metrics, logs, and alerts — SE Project</p>
+
+      <div class="status-row">
+        <div class="dot" id="statusDot"></div>
+        <span id="statusText" style="font-size: 14px; color: #a0aec0"
+          >System Online</span
+        >
+        <span class="badge online" id="statusBadge">ONLINE</span>
+      </div>
+
+      <!-- Metric Cards -->
+      <div class="cards">
+        <div class="card">
+          <div class="label">CPU Usage</div>
+          <div class="value ok" id="cpu">--</div>
+        </div>
+        <div class="card">
+          <div class="label">Response Time</div>
+          <div class="value ok" id="resp">--</div>
+        </div>
+        <div class="card">
+          <div class="label">Error Rate</div>
+          <div class="value ok" id="errRate">--</div>
+        </div>
+      </div>
+
+      <!-- Fault Type Selector + Buttons -->
+      <div class="btn-row" style="align-items: center">
+        <select
+          id="faultSelect"
+          style="
+            background: #2d3748;
+            color: #e2e8f0;
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 14px;
+            cursor: pointer;
+          "
+        >
+          <option value="null_pointer">Null Pointer Exception</option>
+          <option value="memory_leak">Memory Leak</option>
+          <option value="db_down">Database Down</option>
+          <option value="network_timeout">Network Timeout</option>
+        </select>
+        <button class="btn btn-danger" onclick="injectFault()">
+          Inject Fault
+        </button>
+        <button class="btn btn-default" onclick="resetSystem()">
+          Reset System
+        </button>
+      </div>
+
+      <div class="info-box" id="infoBox">
+        System is running normally. Select a fault type and press
+        <strong>Inject Fault</strong>.
+      </div>
+
+      <div class="panels">
+        <div class="panel">
+          <div class="panel-title">Live Logs</div>
+          <div class="log-feed" id="logFeed"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">Response Time Chart</div>
+          <div class="chart-bars" id="barChart"></div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-bottom: 0">
+        <div class="panel-title">Maintenance Timeline</div>
+        <div class="timeline" id="timeline">
+          <div class="tl-row">
+            <div class="tl-dot" style="background: #68d391"></div>
+            <div>
+              <div class="tl-label">System running normally</div>
+              <div class="tl-sub">No faults detected</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/static/main.js"></script>
+  </body>
+</html>

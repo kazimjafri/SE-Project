@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="/" class="brand">MonitorPro</a>
+  <a href="/">Dashboard</a>
+  <a href="/alerts">Alerts</a>
+  <a href="/history">Fault History</a>
+  <a href="/about" class="active">About</a>
+  <a href="/logout" style="margin-left:auto;color:#fc8181;">Logout</a>
+</nav>
+
+<div class="page">
+  <h1>About This Project</h1>
+  <p class="subtitle">Software Engineering | Semester Project</p>
+
+  <div class="about-card">
+    <h2>What is this?</h2>
+    <p>This web application demonstrates how <strong>monitoring tools</strong> — specifically Logs, Metrics, and Alerts — reduce <strong>corrective maintenance response time</strong> in software systems.</p>
+    <p>When a bug or failure occurs, monitoring tools detect it instantly, notify the team, and provide diagnostic information — drastically reducing the time it takes to identify and fix the issue.</p>
+  </div>
+
+  <div class="about-card">
+    <h2>The Three Monitoring Tools</h2>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="icon">📋</div>
+        <h3>Logs</h3>
+        <p>Logs record every event in the system with timestamps. When an error occurs, logs show exactly what happened, where, and when — making diagnosis fast.</p>
+      </div>
+      <div class="concept-card">
+        <div class="icon">📊</div>
+        <h3>Metrics</h3>
+        <p>Metrics track numerical values like CPU usage, response time, and error rate. Sudden spikes indicate a problem before users even notice it.</p>
+      </div>
+      <div class="concept-card">
+        <div class="icon">🔔</div>
+        <h3>Alerts</h3>
+        <p>Alerts automatically notify engineers when a metric crosses a threshold. This eliminates manual checking and ensures immediate response.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-card">
+    <h2>Tech Stack</h2>
+    <p><strong>Frontend:</strong> HTML, CSS, JavaScript</p>
+    <p><strong>Backend:</strong> Python - Flask</p>
+    <p><strong>Database:</strong> MongoDB (PyMongo)</p>
+    <p><strong>Concept:</strong> Corrective Maintenance, MTTR (Mean Time To Repair)</p>
+  </div>
+</div>
+
+</body>
+</html>

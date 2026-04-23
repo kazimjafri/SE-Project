@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fault History</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="/" class="brand">MonitorPro</a>
+      <a href="/">Dashboard</a>
+      <a href="/alerts">Alerts</a>
+      <a href="/history" class="active">Fault History</a>
+      <a href="/about">About</a>
+      <a href="/logout" style="margin-left:auto;color:#fc8181;">Logout</a>
+    </nav>
+
+    <div class="page">
+      <h1>Fault History</h1>
+      <p class="subtitle">
+        All past faults, detection time, resolution time, and MTTR
+      </p>
+
+      <!-- MTTR Summary -->
+      <div class="cards" style="margin-bottom: 24px">
+        <div class="card">
+          <div class="label">Total Faults</div>
+          <div class="value ok" id="totalFaults">0</div>
+        </div>
+        <div class="card">
+          <div class="label">Avg Detection Time</div>
+          <div class="value ok" id="avgDetect">0s</div>
+        </div>
+        <div class="card">
+          <div class="label">Avg MTTR</div>
+          <div class="value ok" id="avgMttr">0s</div>
+        </div>
+      </div>
+
+      <!-- Fault Table -->
+      <div class="panel">
+        <div class="panel-title">Fault Log</div>
+        <table class="fault-table" id="faultTable">
+          <thead>
+            <tr>
+              <th>Fault Type</th>
+              <th>Timestamp</th>
+              <th>Detected In</th>
+              <th>Resolved In</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="faultBody">
+            <tr>
+              <td
+                colspan="5"
+                style="text-align: center; color: #718096; padding: 20px"
+              >
+                No faults recorded yet. Go to Dashboard and inject a fault.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      async function loadHistory() {
+        const res = await fetch("/api/fault-history");
+        const data = await res.json();
+
+        document.getElementById("totalFaults").textContent = data.length;
+
+        if (data.length === 0) return;
+
+        const avgD = Math.round(
+          data.reduce((a, b) => a + b.detected_in_seconds, 0) / data.length,
+        );
+        const avgR = Math.round(
+          data.reduce((a, b) => a + b.resolved_in_seconds, 0) / data.length,
+        );
+        document.getElementById("avgDetect").textContent = avgD + "s";
+        document.getElementById("avgMttr").textContent = avgR + "s";
+
+        const tbody = document.getElementById("faultBody");
+        tbody.innerHTML = data
+          .map(
+            (f) => `
+    <tr>
+      <td>${f.fault_type}</td>
+      <td style="color:#718096;font-size:12px">${f.timestamp}</td>
+      <td style="color:#f6ad55">${f.detected_in_seconds}s</td>
+      <td style="color:#fc8181">${f.resolved_in_seconds}s</td>
+      <td><span class="badge online">${f.status}</span></td>
+    </tr>
+  `,
+          )
+          .join("");
+      }
+      loadHistory();
+    </script>
+  </body>
+</html>

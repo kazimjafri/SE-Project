@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alerts</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="/" class="brand">MonitorPro</a>
+  <a href="/">Dashboard</a>
+  <a href="/alerts" class="active">Alerts</a>
+  <a href="/history">Fault History</a>
+  <a href="/about">About</a>
+  <a href="/logout" style="margin-left:auto;color:#fc8181;">Logout</a>
+</nav>
+
+<div class="page">
+  <h1>Alert History</h1>
+  <p class="subtitle">All triggered alerts stored in MongoDB</p>
+
+  <div id="alertList">
+    <p style="color:#718096;font-size:14px">Loading alerts...</p>
+  </div>
+</div>
+
+<script>
+async function loadAlerts() {
+  const res = await fetch('/api/alerts');
+  const data = await res.json();
+  const list = document.getElementById('alertList');
+
+  if (data.length === 0) {
+    list.innerHTML = '<p style="color:#718096;font-size:14px">No alerts yet. Go to Dashboard and click Inject Fault.</p>';
+    return;
+  }
+
+  list.innerHTML = data.map(a => `
+    <div class="alert-item">
+      <div class="alert-dot" style="background:${a.severity === 'critical' ? '#fc8181' : '#f6ad55'}"></div>
+      <div>
+        <div class="alert-text">${a.message}</div>
+        <div class="alert-time">${a.timestamp}</div>
+      </div>
+    </div>
+  `).join('');
+}
+loadAlerts();
+</script>
+</body>
+</html>
