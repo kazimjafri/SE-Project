@@ -4,12 +4,13 @@ from pymongo import MongoClient
 from datetime import datetime
 import random
 import functools
+import os
 
 app = Flask(__name__, template_folder='html', static_folder='static')
 CORS(app)
 app.secret_key = "monitopro_secret_2024"
 
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient(os.environ.get("MONGO_URL", "mongodb+srv://kazimjf06_db_user:kazimjafri6@@cluster0.7mwov7w.mongodb.net/monitoring_db?appName=Cluster0"))
 db = client["monitoring_db"]
 
 # Admin credentials
