@@ -10,12 +10,12 @@ app = Flask(__name__, template_folder='html', static_folder='static')
 CORS(app)
 app.secret_key = "monitopro_secret_2024"
 
-client = MongoClient(os.environ.get("MONGO_URL", "mongodb+srv://kazimjf06_db_user:kazimjafri6@@cluster0.7mwov7w.mongodb.net/monitoring_db?appName=Cluster0"))
+client = MongoClient(os.environ.get("MONGO_URL", "mongodb+srv://kazimjf06_db_user:kazimjafri_06@cluster0.7mwov7w.mongodb.net/?appName=Cluster0"))
 db = client["monitoring_db"]
 
 # Admin credentials
-ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = "admin123"
+ADMIN_USERNAME = "kazim"
+ADMIN_PASSWORD = "monitorpro"
 
 # ─── Login Required Decorator ─────────────────────────
 def login_required(f):
@@ -33,13 +33,42 @@ def login():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
+
         if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+            session['logged_in'] = True
+            session['username'] = username
+            return redirect(url_for('dashboard'))
+
+        user = db.users.find_one({"username": username, "password": password})
+        if user:
             session['logged_in'] = True
             session['username'] = username
             return redirect(url_for('dashboard'))
         else:
             error = "Invalid username or password"
     return render_template("login.html", error=error)
+
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    error = None
+    if request.method == "POST":
+        username = request.form.get("username")
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        if db.users.find_one({"username": username}):
+            error = "Username already taken"
+        elif db.users.find_one({"email": email}):
+            error = "Email already registered"
+        else:
+            db.users.insert_one({
+                "username": username,
+                "email": email,
+                "password": password,
+                "created_at": datetime.now().isoformat()
+            })
+            return redirect(url_for('login'))
+    return render_template("signup.html", error=error)
 
 @app.route("/logout")
 def logout():
@@ -48,6 +77,10 @@ def logout():
 
 # ─── Pages (Protected) ────────────────────────────────
 @app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route("/dashboard")
 @login_required
 def dashboard():
     return render_template("dashboard.html")

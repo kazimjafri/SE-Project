@@ -2,27 +2,44 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fault History</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="/static/logo.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
     <nav class="navbar">
-      <a href="/" class="brand">MonitorPro</a>
-      <a href="/">Dashboard</a>
-      <a href="/alerts">Alerts</a>
-      <a href="/history" class="active">Fault History</a>
-      <a href="/about">About</a>
-      <a href="/logout" style="margin-left:auto;color:#fc8181;">Logout</a>
+      <a href="/" class="brand">
+        <img src="/static/logo.png" alt="Logo" width="25" height="25" />
+        MonitorPro
+      </a>
+      <div class="navbar-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/alerts">Alerts</a>
+        <a href="/history" class="active">Fault History</a>
+        <a href="/about">About</a>
+        <a href="/logout" class="nav-logout">Logout</a>
+      </div>
     </nav>
 
     <div class="page">
-      <h1>Fault History</h1>
-      <p class="subtitle">
-        All past faults, detection time, resolution time, and MTTR
-      </p>
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Fault History</h1>
+          <p class="subtitle">
+            All past faults, detection time, resolution time, and MTTR
+          </p>
+        </div>
+      </div>
 
-      <!-- MTTR Summary -->
-      <div class="cards" style="margin-bottom: 24px">
+      <!-- MTTR Summary Cards -->
+      <div class="cards">
         <div class="card">
           <div class="label">Total Faults</div>
           <div class="value ok" id="totalFaults">0</div>
@@ -40,29 +57,33 @@
       <!-- Fault Table -->
       <div class="panel">
         <div class="panel-title">Fault Log</div>
-        <table class="fault-table" id="faultTable">
-          <thead>
-            <tr>
-              <th>Fault Type</th>
-              <th>Timestamp</th>
-              <th>Detected In</th>
-              <th>Resolved In</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="faultBody">
-            <tr>
-              <td
-                colspan="5"
-                style="text-align: center; color: #718096; padding: 20px"
-              >
-                No faults recorded yet. Go to Dashboard and inject a fault.
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-wrapper">
+          <table class="fault-table" id="faultTable">
+            <thead>
+              <tr>
+                <th>Fault Type</th>
+                <th>Timestamp</th>
+                <th>Detected In</th>
+                <th>Resolved In</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="faultBody">
+              <tr>
+                <td colspan="5" class="table-empty">
+                  No faults recorded yet. Go to Dashboard and inject a fault.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
+
+    <footer>
+      <div class="footer-brand">MonitorPro</div>
+      <div class="footer-text">SE Project | Real-Time System Monitoring</div>
+    </footer>
 
     <script>
       async function loadHistory() {
@@ -70,7 +91,6 @@
         const data = await res.json();
 
         document.getElementById("totalFaults").textContent = data.length;
-
         if (data.length === 0) return;
 
         const avgD = Math.round(
@@ -86,14 +106,14 @@
         tbody.innerHTML = data
           .map(
             (f) => `
-    <tr>
-      <td>${f.fault_type}</td>
-      <td style="color:#718096;font-size:12px">${f.timestamp}</td>
-      <td style="color:#f6ad55">${f.detected_in_seconds}s</td>
-      <td style="color:#fc8181">${f.resolved_in_seconds}s</td>
-      <td><span class="badge online">${f.status}</span></td>
-    </tr>
-  `,
+          <tr>
+            <td class="fault-type-cell">${f.fault_type}</td>
+            <td class="timestamp-cell">${f.timestamp}</td>
+            <td class="detect-cell">${f.detected_in_seconds}s</td>
+            <td class="resolve-cell">${f.resolved_in_seconds}s</td>
+            <td><span class="badge online">${f.status}</span></td>
+          </tr>
+        `,
           )
           .join("");
       }

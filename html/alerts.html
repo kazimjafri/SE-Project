@@ -1,52 +1,88 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Alerts</title>
-  <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alerts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="/static/logo.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="/" class="brand">
+        <img src="/static/logo.png" alt="Logo" width="25" height="25" />
+        MonitorPro
+      </a>
+      <div class="navbar-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/alerts" class="active">Alerts</a>
+        <a href="/history">Fault History</a>
+        <a href="/about">About</a>
+        <a href="/logout" class="nav-logout">Logout</a>
+      </div>
+    </nav>
 
-<nav class="navbar">
-  <a href="/" class="brand">MonitorPro</a>
-  <a href="/">Dashboard</a>
-  <a href="/alerts" class="active">Alerts</a>
-  <a href="/history">Fault History</a>
-  <a href="/about">About</a>
-  <a href="/logout" style="margin-left:auto;color:#fc8181;">Logout</a>
-</nav>
+    <div class="page">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Alert History</h1>
+          <p class="subtitle">All triggered alerts stored in MongoDB</p>
+        </div>
+        <div class="hero-badge">
+          <div class="dot-pulse" style="background: #fc8181"></div>
+          Live Monitoring
+        </div>
+      </div>
 
-<div class="page">
-  <h1>Alert History</h1>
-  <p class="subtitle">All triggered alerts stored in MongoDB</p>
-
-  <div id="alertList">
-    <p style="color:#718096;font-size:14px">Loading alerts...</p>
-  </div>
-</div>
-
-<script>
-async function loadAlerts() {
-  const res = await fetch('/api/alerts');
-  const data = await res.json();
-  const list = document.getElementById('alertList');
-
-  if (data.length === 0) {
-    list.innerHTML = '<p style="color:#718096;font-size:14px">No alerts yet. Go to Dashboard and click Inject Fault.</p>';
-    return;
-  }
-
-  list.innerHTML = data.map(a => `
-    <div class="alert-item">
-      <div class="alert-dot" style="background:${a.severity === 'critical' ? '#fc8181' : '#f6ad55'}"></div>
-      <div>
-        <div class="alert-text">${a.message}</div>
-        <div class="alert-time">${a.timestamp}</div>
+      <div id="alertList">
+        <p class="empty-state">Loading alerts...</p>
       </div>
     </div>
-  `).join('');
-}
-loadAlerts();
-</script>
-</body>
+
+    <footer>
+      <div class="footer-brand">MonitorPro</div>
+      <div class="footer-text">SE Project | Real-Time System Monitoring</div>
+    </footer>
+
+    <script>
+      async function loadAlerts() {
+        const res = await fetch("/api/alerts");
+        const data = await res.json();
+        const list = document.getElementById("alertList");
+
+        if (data.length === 0) {
+          list.innerHTML =
+            '<p class="empty-state">No alerts yet. Go to Dashboard and click Inject Fault.</p>';
+          return;
+        }
+
+        list.innerHTML =
+          `<div class="panel"><div class="panel-title">All Alerts</div><div class="alert-list">` +
+          data
+            .map(
+              (a) => `
+            <div class="alert-item">
+              <div class="alert-dot" style="background:${a.severity === "critical" ? "#fc8181" : "#f6ad55"}"></div>
+              <div class="alert-content">
+                <div class="alert-text">${a.message}</div>
+                <div class="alert-meta">
+                  <span class="badge ${a.severity === "critical" ? "critical" : "warning"}">${a.severity.toUpperCase()}</span>
+                  <span class="alert-time">${a.timestamp}</span>
+                </div>
+              </div>
+            </div>
+          `,
+            )
+            .join("") +
+          `</div></div>`;
+      }
+      loadAlerts();
+    </script>
+  </body>
 </html>

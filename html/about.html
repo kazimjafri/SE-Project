@@ -1,60 +1,155 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>About</title>
-  <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
-
-<nav class="navbar">
-  <a href="/" class="brand">MonitorPro</a>
-  <a href="/">Dashboard</a>
-  <a href="/alerts">Alerts</a>
-  <a href="/history">Fault History</a>
-  <a href="/about" class="active">About</a>
-  <a href="/logout" style="margin-left:auto;color:#fc8181;">Logout</a>
-</nav>
-
-<div class="page">
-  <h1>About This Project</h1>
-  <p class="subtitle">Software Engineering | Semester Project</p>
-
-  <div class="about-card">
-    <h2>What is this?</h2>
-    <p>This web application demonstrates how <strong>monitoring tools</strong> — specifically Logs, Metrics, and Alerts — reduce <strong>corrective maintenance response time</strong> in software systems.</p>
-    <p>When a bug or failure occurs, monitoring tools detect it instantly, notify the team, and provide diagnostic information — drastically reducing the time it takes to identify and fix the issue.</p>
-  </div>
-
-  <div class="about-card">
-    <h2>The Three Monitoring Tools</h2>
-    <div class="concept-grid">
-      <div class="concept-card">
-        <div class="icon">📋</div>
-        <h3>Logs</h3>
-        <p>Logs record every event in the system with timestamps. When an error occurs, logs show exactly what happened, where, and when — making diagnosis fast.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="/static/logo.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="/" class="brand">
+        <img src="/static/logo.png" alt="Logo" width="25" height="25" />
+        MonitorPro
+      </a>
+      <div class="navbar-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/alerts">Alerts</a>
+        <a href="/history">Fault History</a>
+        <a href="/about" class="active">About</a>
+        <a href="/logout" class="nav-logout">Logout</a>
       </div>
-      <div class="concept-card">
-        <div class="icon">📊</div>
-        <h3>Metrics</h3>
-        <p>Metrics track numerical values like CPU usage, response time, and error rate. Sudden spikes indicate a problem before users even notice it.</p>
+    </nav>
+
+    <div class="page">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">About This Project</h1>
+          <p class="subtitle">Software Engineering | Semester Project</p>
+        </div>
       </div>
-      <div class="concept-card">
-        <div class="icon">🔔</div>
-        <h3>Alerts</h3>
-        <p>Alerts automatically notify engineers when a metric crosses a threshold. This eliminates manual checking and ensures immediate response.</p>
+
+      <!-- What is this -->
+      <div class="about-card">
+        <div class="section-label">Overview</div>
+        <h2 class="about-card-title">What is MonitorPro?</h2>
+        <p class="about-card-text">
+          This web application demonstrates how
+          <strong>monitoring tools</strong> specifically Logs, Metrics, and
+          Alerts, reduce
+          <strong>corrective maintenance response time</strong> in software
+          systems.
+        </p>
+        <p class="about-card-text">
+          When a bug or failure occurs, monitoring tools detect it instantly,
+          notify the team, and provide diagnostic information, drastically
+          reducing the time it takes to identify and fix the issue.
+        </p>
+      </div>
+
+      <!-- Three tools -->
+      <div class="about-card">
+        <div class="section-label">Core Concepts</div>
+        <h2 class="about-card-title">The Three Monitoring Tools</h2>
+        <div class="concept-grid">
+          <div class="concept-card blue">
+            <span class="feature-icon"
+              ><i
+                class="fa-solid fa-clipboard"
+                style="color: rgb(99, 179, 237)"
+              ></i
+            ></span>
+            <div class="feature-title">Logs</div>
+            <p class="feature-desc">
+              Logs record every event in the system with timestamps. When an
+              error occurs, logs show exactly what happened, where, and when —
+              making diagnosis fast.
+            </p>
+          </div>
+          <div class="concept-card green">
+            <span class="feature-icon"
+              ><i
+                class="fa-solid fa-chart-area"
+                style="color: rgb(99, 179, 237)"
+              ></i
+            ></span>
+            <div class="feature-title">Metrics</div>
+            <p class="feature-desc">
+              Metrics track numerical values like CPU usage, response time, and
+              error rate. Sudden spikes indicate a problem before users even
+              notice it.
+            </p>
+          </div>
+          <div class="concept-card orange">
+            <span class="feature-icon"
+              ><i class="fa-solid fa-bell" style="color: rgb(99, 179, 237)"></i
+            ></span>
+            <div class="feature-title">Alerts</div>
+            <p class="feature-desc">
+              Alerts automatically notify engineers when a metric crosses a
+              threshold. This eliminates manual checking and ensures immediate
+              response.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech Stack -->
+      <div class="about-card">
+        <div class="section-label">Tech Stack</div>
+        <h2 class="about-card-title">Built With</h2>
+        <div class="tech-grid">
+          <div class="tech-item">
+            <div class="tech-label">Frontend</div>
+            <div class="tech-value">HTML, CSS, JavaScript</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-label">Backend</div>
+            <div class="tech-value">Python, Flask</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-label">Database</div>
+            <div class="tech-value">MongoDB (PyMongo)</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-label">Concept</div>
+            <div class="tech-value">Corrective Maintenance, MTTR</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-section" style="padding: 0; margin-bottom: 0">
+        <div class="cta-box">
+          <h2>Ready to see it in action?</h2>
+          <p>
+            Go to the dashboard, inject a fault, and watch MonitorPro detect and
+            log it in real time.
+          </p>
+          <a
+            href="/dashboard"
+            class="btn-primary"
+            style="font-size: 16px; padding: 14px 36px"
+            >Open Dashboard →</a
+          >
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="about-card">
-    <h2>Tech Stack</h2>
-    <p><strong>Frontend:</strong> HTML, CSS, JavaScript</p>
-    <p><strong>Backend:</strong> Python - Flask</p>
-    <p><strong>Database:</strong> MongoDB (PyMongo)</p>
-    <p><strong>Concept:</strong> Corrective Maintenance, MTTR (Mean Time To Repair)</p>
-  </div>
-</div>
-
-</body>
+    <footer>
+      <div class="footer-brand">MonitorPro</div>
+      <div class="footer-text">SE Project | Real-Time System Monitoring</div>
+    </footer>
+  </body>
 </html>

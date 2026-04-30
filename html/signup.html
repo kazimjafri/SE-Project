@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Sign Up</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="icon" href="/static/logo.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
-    <!-- Navbar -->
     <nav class="navbar">
       <a href="/" class="brand">
         <img src="/static/logo.png" alt="Logo" width="25" height="25" />
@@ -26,19 +25,16 @@
       </div>
     </nav>
 
-    <!-- Login -->
     <div class="login-wrapper">
       <div class="login-box">
         <div class="login-logo">MonitorPro</div>
-        <div class="login-sub">
-          Software Monitoring System | Login to continue
-        </div>
+        <div class="login-sub">Create your account</div>
 
         {% if error %}
         <div class="error-msg">⚠ {{ error }}</div>
         {% endif %}
 
-        <form method="POST" action="/login">
+        <form method="POST" action="/signup">
           <div class="form-group">
             <label>Username</label>
             <input
@@ -50,25 +46,32 @@
             />
           </div>
           <div class="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div class="form-group">
             <label>Password</label>
             <input
               type="password"
               name="password"
-              placeholder="Enter password"
+              placeholder="Create a password"
               required
             />
           </div>
-          <button type="submit" class="btn-login">Login</button>
+          <button type="submit" class="btn-login">Sign Up</button>
         </form>
 
         <div class="login-footer-note">
-          &nbsp; Don't have an account?
-          <a href="/signup">Sign Up</a>
+         <a href="/">← back</a>&nbsp; | &nbsp;Already have an account? <a href="/login">Login</a>
         </div>
       </div>
     </div>
 
-    <!-- Footer -->
     <footer>
       <div class="footer-brand">MonitorPro</div>
       <div class="footer-text">SE Project | Real-Time System Monitoring</div>

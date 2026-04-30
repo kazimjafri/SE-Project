@@ -2,29 +2,46 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Monitoring Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="/static/logo.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
     <nav class="navbar">
-      <a href="/" class="brand">MonitorPro</a>
-      <a href="/" class="active">Dashboard</a>
-      <a href="/alerts">Alerts</a>
-      <a href="/history">Fault History</a>
-      <a href="/about">About</a>
-      <a href="/logout" style="margin-left: auto; color: #fc8181">Logout</a>
+      <a href="/" class="brand">
+        <img src="/static/logo.png" alt="Logo" width="25" height="25" />
+        MonitorPro
+      </a>
+      <div class="navbar-links">
+        <a href="/dashboard" class="active">Dashboard</a>
+        <a href="/alerts">Alerts</a>
+        <a href="/history">Fault History</a>
+        <a href="/about">About</a>
+        <a href="/logout" class="nav-logout">Logout</a>
+      </div>
     </nav>
 
     <div class="page">
-      <h1>System Monitoring Dashboard</h1>
-      <p class="subtitle">Real-time metrics, logs, and alerts — SE Project</p>
-
-      <div class="status-row">
-        <div class="dot" id="statusDot"></div>
-        <span id="statusText" style="font-size: 14px; color: #a0aec0"
-          >System Online</span
-        >
-        <span class="badge online" id="statusBadge">ONLINE</span>
+      <!-- Page Header -->
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">System Dashboard</h1>
+          <p class="subtitle">
+            Real-time metrics, logs, and fault injection 
+          </p>
+        </div>
+        <div class="status-row">
+          <div class="dot" id="statusDot"></div>
+          <span id="statusText" class="status-text">System Online</span>
+          <span class="badge online" id="statusBadge">ONLINE</span>
+        </div>
       </div>
 
       <!-- Metric Cards -->
@@ -43,31 +60,23 @@
         </div>
       </div>
 
-      <!-- Fault Type Selector + Buttons -->
-      <div class="btn-row" style="align-items: center">
-        <select
-          id="faultSelect"
-          style="
-            background: #2d3748;
-            color: #e2e8f0;
-            border: 1px solid #4a5568;
-            border-radius: 8px;
-            padding: 10px 14px;
-            font-size: 14px;
-            cursor: pointer;
-          "
-        >
-          <option value="null_pointer">Null Pointer Exception</option>
-          <option value="memory_leak">Memory Leak</option>
-          <option value="db_down">Database Down</option>
-          <option value="network_timeout">Network Timeout</option>
-        </select>
-        <button class="btn btn-danger" onclick="injectFault()">
-          Inject Fault
-        </button>
-        <button class="btn btn-default" onclick="resetSystem()">
-          Reset System
-        </button>
+      <!-- Controls -->
+      <div class="controls-bar">
+        <div class="section-label">Fault Injection</div>
+        <div class="btn-row">
+          <select id="faultSelect" class="fault-select">
+            <option value="null_pointer">Null Pointer Exception</option>
+            <option value="memory_leak">Memory Leak</option>
+            <option value="db_down">Database Down</option>
+            <option value="network_timeout">Network Timeout</option>
+          </select>
+          <button class="btn btn-danger" onclick="injectFault()">
+             Inject Fault
+          </button>
+          <button class="btn btn-default" onclick="resetSystem()">
+            ↺ Reset System
+          </button>
+        </div>
       </div>
 
       <div class="info-box" id="infoBox">
@@ -75,6 +84,7 @@
         <strong>Inject Fault</strong>.
       </div>
 
+      <!-- Panels -->
       <div class="panels">
         <div class="panel">
           <div class="panel-title">Live Logs</div>
@@ -86,6 +96,7 @@
         </div>
       </div>
 
+      <!-- Timeline -->
       <div class="panel" style="margin-bottom: 0">
         <div class="panel-title">Maintenance Timeline</div>
         <div class="timeline" id="timeline">
@@ -99,6 +110,11 @@
         </div>
       </div>
     </div>
+
+    <footer>
+      <div class="footer-brand">MonitorPro</div>
+      <div class="footer-text">SE Project | Real-Time System Monitoring</div>
+    </footer>
 
     <script src="/static/main.js"></script>
   </body>

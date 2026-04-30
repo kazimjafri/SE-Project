@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MonitorPro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <link rel="icon" href="/static/logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a href="/" class="brand">
+        <img src="/static/logo.png" alt="Logo" width="25" height="25" />
+        MonitorPro
+      </a>
+      <div class="navbar-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it Works</a>
+        <a href="/signup" class="nav-login-btn">SignUp →</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <div class="dot-pulse"></div>
+          Live Monitoring Active
+        </div>
+        <h1>Real-Time <span>System</span><br />Monitoring,<br />Simplified.</h1>
+        <p>
+          MonitorPro tracks your software system's CPU usage, response time,
+          error rates, and live logs in real time. Detect faults instantly,
+          receive alerts, and resolve issues in seconds — not hours.
+        </p>
+        <div class="hero-actions">
+          <a href="/login" class="btn-primary">Go to Dashboard →</a>
+          <a href="#features" class="btn-secondary">Explore Features</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="mock-dashboard">
+          <div class="mock-topbar">
+            <div class="mock-dot" style="background: #fc8181"></div>
+            <div class="mock-dot" style="background: #f6ad55"></div>
+            <div class="mock-dot" style="background: #68d391"></div>
+            <span
+              style="
+                font-family:
+                  Space Mono,
+                  monospace;
+                font-size: 10px;
+                color: #718096;
+                margin-left: 10px;
+              "
+              >MonitorPro — Dashboard</span
+            >
+          </div>
+          <div class="mock-body">
+            <div class="mock-cards">
+              <div class="mock-card">
+                <div class="mock-card-label">CPU Usage</div>
+                <div class="mock-card-value" style="color: #68d391">26%</div>
+              </div>
+              <div class="mock-card">
+                <div class="mock-card-label">Response</div>
+                <div class="mock-card-value" style="color: #68d391">114ms</div>
+              </div>
+              <div class="mock-card">
+                <div class="mock-card-label">Error Rate</div>
+                <div class="mock-card-value" style="color: #68d391">0.1%</div>
+              </div>
+            </div>
+            <div class="mock-logs">
+              <div class="mock-log-title">Live Logs</div>
+              <div
+                class="mock-log-line"
+                style="background: #1a2a3a; color: #63b3ed"
+              >
+                [15:25:39] [INFO] GET /api/data 200 OK — 130ms
+              </div>
+              <div
+                class="mock-log-line"
+                style="background: #1a2a3a; color: #63b3ed"
+              >
+                [15:25:41] [INFO] GET /api/data 200 OK — 104ms
+              </div>
+              <div
+                class="mock-log-line"
+                style="background: #2a1010; color: #fc8181"
+              >
+                [15:25:44] [ERROR] NullPointerException detected
+              </div>
+              <div
+                class="mock-log-line"
+                style="background: #2a2010; color: #f6ad55"
+              >
+                [15:25:44] [WARN] Alert triggered — Engineer notified
+              </div>
+              <div
+                class="mock-log-line"
+                style="background: #1a2a3a; color: #63b3ed"
+              >
+                [15:25:50] [INFO] Hotfix deployed — recovered in 6s
+              </div>
+            </div>
+            <div class="mock-bars">
+              <div class="mock-bars-title">Response Time Chart</div>
+              <div class="mock-bar-chart">
+                <div
+                  class="mock-bar"
+                  style="height: 50%; background: #68d391"
+                ></div>
+                <div
+                  class="mock-bar"
+                  style="height: 55%; background: #68d391"
+                ></div>
+                <div
+                  class="mock-bar"
+                  style="height: 45%; background: #68d391"
+                ></div>
+                <div
+                  class="mock-bar"
+                  style="height: 48%; background: #68d391"
+                ></div>
+                <div
+                  class="mock-bar"
+                  style="height: 100%; background: #fc8181"
+                ></div>
+                <div
+                  class="mock-bar"
+                  style="height: 90%; background: #f6ad55"
+                ></div>
+                <div
+                  class="mock-bar"
+                  style="height: 50%; background: #68d391"
+                ></div>
+                <div
+                  class="mock-bar"
+                  style="height: 45%; background: #68d391"
+                ></div>
+                <div
+                  class="mock-bar"
+                  style="height: 52%; background: #68d391"
+                ></div>
+                <div
+                  class="mock-bar"
+                  style="height: 48%; background: #68d391"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-number">2s</div>
+        <div class="stat-label">Metric refresh interval</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">4+</div>
+        <div class="stat-label">Fault types supported</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">&lt;10s</div>
+        <div class="stat-label">Average fault detection</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Real-time log visibility</div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <section class="section" id="features">
+      <div class="section-label">Features</div>
+      <h2 class="section-title">Everything you need,<br />all in one place.</h2>
+      <p class="section-subtitle">
+        Every feature in MonitorPro is designed to give you instant visibility
+        into your system's health, catch faults early, and speed up recovery
+        time.
+      </p>
+
+      <div class="features-grid">
+        <div class="feature-card blue">
+          <span class="feature-icon"
+            ><i
+              class="fa-solid fa-chart-area"
+              style="color: rgb(99, 179, 237)"
+            ></i
+          ></span>
+          <div class="feature-title">Live Metrics Dashboard</div>
+          <p class="feature-desc">
+            CPU Usage, Response Time, and Error Rate update every 2 seconds
+            automatically. Get a complete picture of your system's health at a
+            glance.
+          </p>
+        </div>
+        <div class="feature-card green">
+          <span class="feature-icon"
+            ><i
+              class="fa-solid fa-clipboard"
+              style="color: rgb(99, 179, 237)"
+            ></i
+          ></span>
+          <div class="feature-title">Real-Time Live Logs</div>
+          <p class="feature-desc">
+            Every API request is logged as INFO, WARNING, or ERROR in a live
+            scrolling feed. Color-coded entries make it instantly clear what's
+            happening.
+          </p>
+        </div>
+        <div class="feature-card orange">
+          <span class="feature-icon"
+            ><i
+              class="fa-solid fa-bolt-lightning"
+              style="color: rgb(99, 179, 237)"
+            ></i
+          ></span>
+          <div class="feature-title">Fault Injection Testing</div>
+          <p class="feature-desc">
+            Simulate real-world failures — Null Pointer, Memory Leak, Database
+            Down, or Network Timeout — and see exactly how the monitoring system
+            responds.
+          </p>
+        </div>
+        <div class="feature-card red">
+          <span class="feature-icon"
+            ><i
+              class="fa-solid fa-circle-exclamation"
+              style="color: rgb(99, 179, 237)"
+            ></i
+          ></span>
+          <div class="feature-title">Instant Alerts</div>
+          <p class="feature-desc">
+            The moment a fault is detected, an alert fires and the engineer is
+            notified within seconds — no more waiting hours to discover
+            something broke.
+          </p>
+        </div>
+        <div class="feature-card blue">
+          <span class="feature-icon"
+            ><i
+              class="fa-solid fa-chart-line"
+              style="color: rgb(99, 179, 237)"
+            ></i
+          ></span>
+          <div class="feature-title">Response Time Chart</div>
+          <p class="feature-desc">
+            A live visual bar chart tracks response time trends. Green bars are
+            normal, orange signals a warning, and red marks a detected fault.
+          </p>
+        </div>
+        <div class="feature-card green">
+          <span class="feature-icon"
+            ><i class="fa-solid fa-clock" style="color: rgb(99, 179, 237)"></i
+          ></span>
+          <div class="feature-title">Maintenance Timeline</div>
+          <p class="feature-desc">
+            A complete timeline from fault detection to full recovery, recorded
+            in one place. See the exact corrective maintenance time for every
+            incident.
+          </p>
+        </div>
+        <div class="feature-card orange">
+          <span class="feature-icon"
+            ><i class="fa-solid fa-folder" style="color: rgb(99, 179, 237)"></i
+          ></span>
+          <div class="feature-title">Fault History</div>
+          <p class="feature-desc">
+            Every fault is stored in MongoDB with a full record — what happened,
+            when it happened, and how long it took to resolve.
+          </p>
+        </div>
+        <div class="feature-card red">
+          <span class="feature-icon"
+            ><i class="fa-solid fa-bell" style="color: rgb(99, 179, 237)"></i
+          ></span>
+          <div class="feature-title">Alerts Page</div>
+          <p class="feature-desc">
+            All triggered alerts in one dedicated view. Quickly identify
+            unresolved issues and keep a complete history of every system alert.
+          </p>
+        </div>
+        <div class="feature-card blue">
+          <span class="feature-icon"
+            ><i class="fa-solid fa-lock" style="color: rgb(99, 179, 237)"></i
+          ></span>
+          <div class="feature-title">Secure Login System</div>
+          <p class="feature-desc">
+            Session-based authentication ensures only authorized users can
+            access the dashboard. Monitoring data stays safe and protected.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="section" id="how-it-works">
+      <div class="section-label">How it Works</div>
+      <h2 class="section-title">Up and running in 4 steps.</h2>
+      <p class="section-subtitle">
+        A simple, straightforward workflow — log in, monitor your system, inject
+        a fault, and watch the full recovery happen in real time.
+      </p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-title">Log In</div>
+          <p class="step-desc"> <br>
+            Sign in to gain secure access to the
+            full monitoring dashboard.
+          </p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-title">Monitor Your System</div>
+          <p class="step-desc">
+            <br>
+            View real-time metrics, live logs, and the response time chart.
+            
+          </p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-title">Inject a Fault</div>
+          <p class="step-desc">
+            <br>Metrics spike, logs
+            capture the error, and an alert fires instantly.
+          </p>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-title">Watch the Recovery</div>
+          <p class="step-desc">
+            <br>The timeline updates, the alert triggers, and the system recovers
+            automatically.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <div class="cta-box">
+        <h2>Ready to monitor your system?</h2>
+        <p>
+          Log in and start tracking your system's health in real time. Catch
+          faults in seconds, not hours.
+        </p>
+        <a
+          href="/login"
+          class="btn-primary"
+          style="font-size: 16px; padding: 14px 36px"
+          >Login & Open Dashboard →</a
+        >
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-brand">MonitorPro</div>
+      <div class="footer-text">SE Project | Real-Time System Monitoring</div>
+    </footer>
+  </body>
+</html>
